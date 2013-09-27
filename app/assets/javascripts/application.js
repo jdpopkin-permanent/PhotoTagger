@@ -11,5 +11,25 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require ./jquery.serializeJSON.min.js
 //= require jquery_ujs
+//= require underscore
+//= require_tree ./models
+//= require_tree ../templates
 //= require_tree .
+
+
+PT.initialize = function(userId) {
+  var listView = new PT.PhotosListView();
+  PT.Photo.fetchByUserId(userId, function() {
+    listView.render();
+    $('#content').prepend(listView.$el);
+  });
+
+  var formView = new PT.PhotoFormView();
+  formView.render();
+  $('#content').append(formView.$el);
+
+
+};
+
