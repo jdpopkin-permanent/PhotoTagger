@@ -18,6 +18,8 @@
 //= require_tree ../templates
 //= require_tree .
 
+
+
 PT.initialize = function(userId) {
   PT.showPhotosIndex(userId);
 

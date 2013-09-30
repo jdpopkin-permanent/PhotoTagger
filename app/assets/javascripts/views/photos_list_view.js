@@ -87,12 +87,6 @@
 
     var tsv = new PT.TagSelectView(photo, event);
 
-    // Move this to TSV
-    // var div = $("<div class='photo-tag'></div>");
-    // div.css("position", "absolute");
-    // div.css("left", event.offsetX - 55 + "px");
-    // div.css("top", event.offsetY - 55 + "px");
-    // $(this).parent().append(div);
     tsv.render();
     $(this).parent().append(tsv.$el);
   }

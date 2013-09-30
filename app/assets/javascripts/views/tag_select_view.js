@@ -16,7 +16,10 @@
     this.$el.css("position", "absolute");
     this.$el.css("left", event.offsetX - 55 + "px");
     this.$el.css("top", event.offsetY - 55 + "px");
+    var template = JST["photo_tag_options"];
+    console.log(template);
+    this.$el.append(template);
   }
 
 
-}(this));
+})(this);

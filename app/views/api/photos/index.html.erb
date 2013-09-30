@@ -14,6 +14,8 @@
 //   });
 // });
 
+var users = <%= User.all.to_json.html_safe %>;
+
 PT.initialize(<%= @user_id.to_s %>);
 
 

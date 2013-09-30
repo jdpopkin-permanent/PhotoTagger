@@ -1,8 +1,9 @@
 
-<div id="content">HIIIIIIIIIIIIII</div>
+<div id="content"></div>
 
 <script>
   $(document).ready(function() {
+    PT.users = <%= User.all.to_json.html_safe %>;
     PT.initialize(<%= @current_user_id %>);
   });
 </script>
