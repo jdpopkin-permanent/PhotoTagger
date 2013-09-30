@@ -1,7 +1,7 @@
 <ul class="tag-options">
   <% for (var i = 0; i < PT.users.length; i++) { %>
 
-  <li>
+  <li data-user-id="<%= PT.users[i].id %>">
   <%= PT.users[i].username %>
   </li>
 

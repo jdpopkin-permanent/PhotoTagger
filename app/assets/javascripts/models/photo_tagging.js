@@ -30,7 +30,7 @@
         var photoObj = new PhotoTagging(photoData);
         PhotoTagging.all.push(photoObj);
         callback(photoData);
-        Photo.trigger('add');
+        //PhotoTagging.trigger('add');
         //console.log(Photo._events)
       }
     });
@@ -66,6 +66,7 @@
   };
 
   PhotoTagging.trigger = function(eventName) {
+
     PhotoTagging._events[eventName].forEach(function(callback) {
       callback();
     });

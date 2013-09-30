@@ -1,7 +1,13 @@
 class Api::PhotoTaggingsController < ApplicationController
+  include Api::PhotoTaggingsHelper
   before_filter :require_current_user!, :authorized_to_tag, only: [:create]
 
   def create
+    unless(params[:photo_tagging])
+      params[:photo_tagging] = { x_pos: params[:xPos], y_pos: params[:yPos],
+                          user_id: params[:userId], photo_id: params[:photoId]}
+    end
+
     @photo_tagging = PhotoTagging.new(params[:photo_tagging])
     if @photo_tagging.save
       render json: @photo_tagging
