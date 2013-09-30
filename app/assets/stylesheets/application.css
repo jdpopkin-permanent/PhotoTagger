@@ -15,3 +15,15 @@
 .hidden {
   display:none;
 }
+
+.photo-tag {
+  width:100px;
+  height:100px;
+  border-style:solid;
+  border-color:red;
+  border-width:5px;
+}
+
+.img-div {
+  position:relative;
+}

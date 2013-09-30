@@ -42,10 +42,9 @@ PT.showPhotoDetail = function(photo) {
 
   var pdv = new PT.PhotoDetailView(photo);
   var listItem = $("[data-id='" + photo.attributes.id + "']");
-  var $img = "<img src=" + photo.attributes.url + " photo-id=" +
-              photo.attributes.id + ">";
+  var $img = "<div class=img-div photo-id=" + photo.attributes.id + "><img src=" + photo.attributes.url + "></div>";
 
-  listItem.append($img);
+  listItem.after($img);
 
 }
 
