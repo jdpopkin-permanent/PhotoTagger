@@ -18,8 +18,12 @@
 //= require_tree ../templates
 //= require_tree .
 
-
 PT.initialize = function(userId) {
+  PT.showPhotosIndex(userId);
+
+}
+
+PT.showPhotosIndex = function(userId) {
   var listView = new PT.PhotosListView();
   PT.Photo.fetchByUserId(userId, function() {
     listView.render();
@@ -30,7 +34,16 @@ PT.initialize = function(userId) {
   var formView = new PT.PhotoFormView();
   formView.render();
   $('#content').prepend(formView.$el); // #content?
-
-
 };
+
+PT.showPhotoDetail = function(photo) {
+  //var $li = $("<li>" + "<img src=" + photo.attributes.url +
+  //           ">" + "</li>"); // gets us the images
+
+  var pdv = new PT.PhotoDetailView(photo);
+  var listItem = $("[data-id='" + photo.attributes.id + "']");
+  var $img = "<img src=" + photo.attributes.url + "><br>";
+  listItem.append($img);
+
+}
 

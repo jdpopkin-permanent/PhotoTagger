@@ -4,7 +4,6 @@
 
   var PhotosListView = PT.PhotosListView = function() {
     this.$el = $('<div id="plv-div"></div>');
-    //this.$ul = $('<ul id="list"></ul>');
 
     var that = this;
     PT.Photo.on("add", that.render.bind(that)); // binding issue?
@@ -15,9 +14,15 @@
 
     if (!that.$ul) {
       that.$ul = $('<ul id="list"></ul>');
+      // install click handler for all <a> in "#list"
+      that.$ul.on("click", "a", PhotosListView.handleLinkClick)
 
       for (var i = 0; i < PT.Photo.all.length; i++) {
-        var $li = $("<li>" + "<img src=" + PT.Photo.all[i].attributes.url + ">" + "</li>");
+        photo = PT.Photo.all[i];
+        // var $li = $("<li>" + "<img src=" + photo.attributes.url +
+        // ">" + "</li>"); // gets us the images
+
+        var $li = $("<li><a data-id='" + photo.attributes.id + "' href='#'>" + photo.attributes.title + "</a></li>");
         that.$ul.prepend($li);
       };
       that.$el.append(that.$ul);
@@ -26,11 +31,19 @@
       that.$ul.prepend($li);
     }
 
-    console.log("Render called.");
-    if (!$("#list")) {
-      that.$el.append(that.$ul);
-    }
-
     return that;
+  }
+
+  PhotosListView.handleLinkClick = function(event) {
+    event.preventDefault();
+
+    console.log(this);
+
+    var idNeeded = parseInt($(this).attr("data-id"));
+    console.log(idNeeded)
+
+    photo = PT.Photo.find(idNeeded);
+    console.log(photo);
+    PT.showPhotoDetail(photo);
   }
 })(this);

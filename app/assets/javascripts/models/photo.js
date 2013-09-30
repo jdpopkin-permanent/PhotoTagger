@@ -63,17 +63,22 @@
     } else {
       Photo._events[eventName].push(callback);
     }
-    //console.log(Photo._events);
   };
-
-
 
   Photo.trigger = function(eventName) {
     Photo._events[eventName].forEach(function(callback) {
-      //console.log("Triggered!");
-      //console.log(callback);
       callback();
     });
+  }
+
+  Photo.find = function(idNum) {
+    for (var i = 0; i < Photo.all.length; i++) {
+      if (Photo.all[i].attributes.id === idNum) {
+        return Photo.all[i];
+      }
+    }
+
+    return null;
   }
 
 
