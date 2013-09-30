@@ -3,7 +3,7 @@
 
   var PhotoFormView = PT.PhotoFormView = function() {
     this.$el = $('<div></div>');
-    this.$el.on("submit", "form", function() {console.log('clicked')});
+    this.$el.on("submit", "form", this.submit);
   };
 
   PhotoFormView.prototype.render = function() {
@@ -18,7 +18,11 @@
 
     console.log(jsonData);
 
-    // photo = new Photo(jsonData);
+    photo = new PT.Photo(jsonData.photo);
+    console.log("Photo object:")
+    console.log(photo);
+
+    photo.create(function(){});
   };
 
 })(this);

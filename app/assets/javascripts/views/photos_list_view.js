@@ -3,27 +3,34 @@
   var PT = root.PT = (root.PT || {});
 
   var PhotosListView = PT.PhotosListView = function() {
-    this.$el = $('<div></div>');
-    PT.Photo.on("add", this.render); // binding issue?
+    this.$el = $('<div id="plv-div"></div>');
+    //this.$ul = $('<ul id="list"></ul>');
+
+    var that = this;
+    PT.Photo.on("add", that.render.bind(that)); // binding issue?
   };
 
   PhotosListView.prototype.render = function() {
-    this.$el = $('<div></div>');
-    var $ul = $('<ul id="list"></ul>');
+    var that = this;
 
-    // PT.Photo.all.forEach(function(photo) {
-    //       var $li = $("<li>" + photo.title + "</li>");
-    //       console.log('$li:');
-    //       console.log($li);
-    //       $ul.prepend($li);
-    //     });
-    for (var i = 0; i < PT.Photo.all.length; i++) {
-      var $li = $("<li>" + PT.Photo.all[i].attributes.title + "</li>");
-      $ul.prepend($li);
-    };
+    if (!that.$ul) {
+      that.$ul = $('<ul id="list"></ul>');
 
-    console.log(this);
-    this.$el.append($ul);
-    return this;
+      for (var i = 0; i < PT.Photo.all.length; i++) {
+        var $li = $("<li>" + "<img src=" + PT.Photo.all[i].attributes.url + ">" + "</li>");
+        that.$ul.prepend($li);
+      };
+      that.$el.append(that.$ul);
+    } else {
+      var $li = $("<li>" + "<img src=" + PT.Photo.all[PT.Photo.all.length - 1].attributes.url + ">" + "</li>");
+      that.$ul.prepend($li);
+    }
+
+    console.log("Render called.");
+    if (!$("#list")) {
+      that.$el.append(that.$ul);
+    }
+
+    return that;
   }
 })(this);

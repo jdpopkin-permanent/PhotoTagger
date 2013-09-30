@@ -23,12 +23,13 @@ PT.initialize = function(userId) {
   var listView = new PT.PhotosListView();
   PT.Photo.fetchByUserId(userId, function() {
     listView.render();
-    $('#content').prepend(listView.$el);
+    console.log(listView.$el)
+    $('#content').prepend(listView.$el); // #content?
   });
 
   var formView = new PT.PhotoFormView();
   formView.render();
-  $('#content').append(formView.$el);
+  $('#content').prepend(formView.$el); // #content?
 
 
 };

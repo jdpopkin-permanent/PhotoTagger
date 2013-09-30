@@ -1,16 +1,20 @@
 
 
+<div id="content"></div>
 
 <ul id="pic-list"></ul>
 
 <script>
 
-Photo.fetchByUserId(<%= @user_id.to_s %>, function(data) {
-  data.forEach(function(photo) {
-    var link = "<li><img src='" + photo.url + "'></li>";
-    $('#pic-list').prepend($(link));
-  });
-});
+// Note: this code actually prints the pictures
+// PT.Photo.fetchByUserId(<%= @user_id.to_s %>, function(data) {
+//   data.forEach(function(photo) {
+//     var link = "<li><img src='" + photo.url + "'></li>";
+//     $('#pic-list').prepend($(link));
+//   });
+// });
+
+PT.initialize(<%= @user_id.to_s %>);
 
 
 

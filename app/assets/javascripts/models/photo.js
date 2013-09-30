@@ -31,6 +31,7 @@
         Photo.all.push(photoObj);
         callback(photoData);
         Photo.trigger('add');
+        //console.log(Photo._events)
       }
     });
   };
@@ -56,15 +57,13 @@
   Photo._events = (Photo._events || {});
 
   Photo.on = function(eventName, callback) {
-    console.log("On called.");
+    console.log("Reached On. Events hash at end:");
     if (!Photo._events[eventName]) {
       Photo._events[eventName] = [callback];
     } else {
       Photo._events[eventName].push(callback);
     }
-    // console.log(eventName);
-    // console.log(callback);
-    console.log(Photo._events)
+    //console.log(Photo._events);
   };
 
 
@@ -72,6 +71,7 @@
   Photo.trigger = function(eventName) {
     Photo._events[eventName].forEach(function(callback) {
       //console.log("Triggered!");
+      //console.log(callback);
       callback();
     });
   }
